@@ -1,0 +1,31 @@
+
+.movie_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+.movie{
+    width: 300px;
+    margin-top: 15px;
+}
+.title_color{
+    width: 300px;
+    color: white;
+    height: 42px;
+    display: flex;
+    justify-content: space-between;
+}
+.poster{
+    width: 300px;
+}
+.overview{
+    position: absolute;
+    left: 0;
+    bottom: 84px;
+    background-color: rgba(0, 0, 0, 0.712) ;
+    color: white;
+}

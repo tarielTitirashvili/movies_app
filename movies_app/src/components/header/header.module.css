@@ -1,0 +1,20 @@
+.header_container{
+    background-color: rgb(0, 0, 0) ;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.logo{
+    width: 110px;
+}
+.search_input{
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 25px;
+    font-size: 16px;
+}
+.form_container{
+    display: flex;
+    align-items: center;
+}

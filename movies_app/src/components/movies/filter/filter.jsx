@@ -4,6 +4,7 @@ import css from './filter.module.css'
 export default function Filter(props) {
   function submit(event) {
     event.preventDefault()
+    props.setLoadingStatusAC(true)
     props.getMoviesThunk(props.search, props.selectedGenre, props.selectedSearchType)
   }
   function onGenreSelect (e){

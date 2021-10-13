@@ -1,0 +1,9 @@
+.loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: green;
+  background-color:  rgba(0, 0, 0, 0.815);
+}

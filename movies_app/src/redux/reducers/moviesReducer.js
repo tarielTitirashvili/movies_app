@@ -7,7 +7,8 @@ import {
   SET_SELECTED_GENRE,
   SET_SELECTED_SEARCH_TYPE,
   SET_CURRENT_PAGE,
-  SET_TRAILERS_DATA, 
+  SET_TRAILERS_DATA,
+  SET_LOADING_STATUS, 
 } from '../constants'
 
 const initState = {
@@ -21,6 +22,7 @@ const initState = {
   searchBy: [...SORT_BY_ALL_ARRAY],
   selectedSearchType: undefined,
   trailers:[],
+  loading: true,
 }
 
 export default function moviesReducer(state = initState, action) {
@@ -65,6 +67,11 @@ export default function moviesReducer(state = initState, action) {
       return{
         ...state,
         trailers: action.trailers
+      }
+    case SET_LOADING_STATUS:
+      return{
+        ...state,
+        loading: action.status
       }
     default:
       return state

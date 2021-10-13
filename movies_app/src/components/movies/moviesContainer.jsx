@@ -6,10 +6,12 @@ import {
   setSelectedGenreAC,
   setSelectedSearchTypeAC,
   setCurrentPageAC,
-  setTrailersAC
+  setTrailersAC,
+  setLoadingStatusAC
 } from '../../redux/action/moviesActions'
 import { connect } from 'react-redux'
-import { getTrailersThunk } from './../../redux/action/moviesActions';
+import { getTrailersThunk } from './../../redux/action/moviesActions'
+import Loading from '../loading/loading'
 
 export function MoviesContainer(props) {
   useEffect(() => {
@@ -17,9 +19,12 @@ export function MoviesContainer(props) {
     props.getGenresThunk()
   }, [])
 
+  if(props.loading)return <Loading />
+
   return (
     <>
       <Movies
+        setLoadingStatusAC = {props.setLoadingStatusAC}
         movies={props.movies}
         currentPage={props.currentPage}
         setCurrentPageAC = {props.setCurrentPageAC}
@@ -51,7 +56,8 @@ const mapStateToProps = (state) => {
     search: state.moviesReducer.search,
     searchBy: state.moviesReducer.searchBy,
     selectedSearchType: state.moviesReducer.selectedSearchType,
-    trailers: state.moviesReducer.trailers
+    trailers: state.moviesReducer.trailers,
+    loading: state.moviesReducer.loading
   }
 }
 
@@ -77,6 +83,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setTrailersAC(trailers){
       dispatch(setTrailersAC(trailers))
+    },
+    setLoadingStatusAC(status){
+      dispatch(setLoadingStatusAC(status))
     }
   }
 }

@@ -15,18 +15,6 @@ export default function OverlayMovieInfo(props) {
       return true
     }
   }
-  const opts = {
-    height: '390',
-    width: '640',
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-    },
-  };
-  function videoOnReady(event) {
-    event.target.pauseVideo();
-  }
-
   return (
     <div className = {css.overlay} style = {{width:props.overlay?'100%':'0vh'}}>
       <div onClick = {()=>onClick()} className={css.closebtn} >&times;</div>

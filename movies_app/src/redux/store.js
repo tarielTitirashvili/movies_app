@@ -4,7 +4,7 @@ import moviesReducer from "./reducers/moviesReducer"
 
 let reducers = combineReducers(
     {
-       moviesReducer: moviesReducer
+       moviesReducer: moviesReducer,
     }
 )
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

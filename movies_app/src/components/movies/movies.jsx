@@ -1,17 +1,44 @@
 import React from 'react'
+import Filter from './filter/filter'
 import Movie from './movie/movie'
-import css from "./movies.module.css"
+import css from './movies.module.css'
+import Pagination from './pagination/pagination'
 
 export default function Movies(props) {
-    console.log(props.movies)
-    return (
-        <div className = {css.container} >
-            {props.movies.map((movie)=>{
-                return<Movie 
-                    key = {movie.id}
-                    movie = {movie}
-                />
-            })}
+
+  return (
+    <div>
+      <div>
+        <Filter 
+          searchBy = {props.searchBy}
+          search = {props.search}
+          getMoviesThunk = {props.getMoviesThunk}
+          genres = {props.genres}
+          setSelectedGenreAC = {props.setSelectedGenreAC}
+          selectedGenre = {props.selectedGenre}
+          setSelectedSearchTypeAC = {props.setSelectedSearchTypeAC}
+          selectedSearchType = {props.selectedSearchType}
+        />
+        <div className = {css.found_movies_result}>
+          found results: {props.allFoundMovies}
         </div>
-    )
+      </div>
+      <div className={css.container}>
+        {props.movies.map((movie) => {
+          return <Movie key={movie.id} movie={movie} getTrailersThunk = {props.getTrailersThunk} trailers = {props.trailers} setTrailersAC = {props.setTrailersAC} />
+        })}
+      </div>
+      <div className = {css.pagination_container}>
+        <Pagination 
+          currentPage = {props.currentPage}
+          setCurrentPageAC = {props.setCurrentPageAC}
+          totalPages = {props.totalPages}
+          getMoviesThunk = {props.getMoviesThunk}
+          search = {props.search}
+          selectedGenre = {props.selectedGenre}
+          selectedSearchType = {props.selectedSearchType}
+        />
+      </div>
+    </div>
+  )
 }

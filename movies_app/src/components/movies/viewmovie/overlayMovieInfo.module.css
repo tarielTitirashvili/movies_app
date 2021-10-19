@@ -60,4 +60,19 @@
 .trailer{
   min-height: 60vh;
   min-width: 60vw;
+  position: absolute;
+}
+.arrow_left{
+  font-size: 35px;
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  cursor: pointer;
+}
+.arrow_right{
+  font-size: 35px;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  cursor: pointer;
 }

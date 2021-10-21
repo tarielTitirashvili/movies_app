@@ -2,7 +2,6 @@ import { getGenresAPI, getMoviesByPopularity, getTrailers } from "../../API/API"
 import { 
     GET_GENRES, 
     MOVIES_DATA, 
-    SET_ALL_FOUND_MOVIES, 
     SET_SEARCH_WORD, 
     SET_SELECTED_GENRE, 
     SET_SELECTED_SEARCH_TYPE, 
@@ -18,10 +17,9 @@ export const getMoviesThunk = (search, selectedGenre, selectedSearchType, curren
             dispatch(setMoviesDataAC(
                 data.data.results,
                 data.data.total_pages,
+                data.data.page,
+                data.data.total_results
             ))
-            dispatch(setCurrentPageAC(data.data.page))
-            dispatch(setAllFoundMoviesAC(data.data.total_results))
-            dispatch(setLoadingStatusAC(false))
         })
     }
 }
@@ -29,7 +27,6 @@ export const getGenresThunk = () =>{
     return(dispatch) =>{
         getGenresAPI().then((data)=>{
             dispatch(setGenresAC(data.data.genres))
-            dispatch(setLoadingStatusAC(false))
         })
     }
 }
@@ -42,11 +39,9 @@ export const getTrailersThunk = (id) => {
     }
 }
 
-const setMoviesDataAC = (moviesData, totalPages) =>({type: MOVIES_DATA, moviesData, totalPages})
+const setMoviesDataAC = (moviesData, totalPages, page, allMovies) =>({type: MOVIES_DATA, moviesData, totalPages, page, allMovies})
 
 const setGenresAC = (genres) =>({type: GET_GENRES, genres})
-
-const setAllFoundMoviesAC = (allMovies) =>({type: SET_ALL_FOUND_MOVIES, allMovies})
 
 export const setLoadingStatusAC = (status)=>({type:SET_LOADING_STATUS, status})
 

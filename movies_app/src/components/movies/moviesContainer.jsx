@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Movies from './movies'
+import qs from 'qs'
 import {
   getMoviesThunk,
   getGenresThunk,
@@ -7,40 +8,62 @@ import {
   setSelectedSearchTypeAC,
   setCurrentPageAC,
   setTrailersAC,
-  setLoadingStatusAC
+  setLoadingStatusAC,
+  setSearchAC,
 } from '../../redux/action/moviesActions'
 import { connect } from 'react-redux'
 import { getTrailersThunk } from './../../redux/action/moviesActions'
 import Loading from '../loading/loading'
+import { useLocation } from 'react-router'
 
 export function MoviesContainer(props) {
+  const location = useLocation()
+
+  let makeNormal = location.search.slice(1)
+  let { page, genre, search, type } = qs.parse(makeNormal)
+
   useEffect(() => {
-    props.getMoviesThunk()
+    if (page) {
+      props.setCurrentPageAC(page)
+      props.setSelectedGenreAC(genre)
+      props.setSearchAC(search)
+      props.setSelectedSearchTypeAC(type)
+      props.getMoviesThunk(search, genre, type, page)
+    } else {
+      props.getMoviesThunk(
+        props.search,
+        props.selectedGenre,
+        props.selectedSearchType,
+        props.currentPage
+      )
+    }
     props.getGenresThunk()
   }, [])
 
-  if(props.loading)return <Loading />
+  console.log('render')
+
+  if (props.loading) return <Loading />
 
   return (
     <>
       <Movies
-        setLoadingStatusAC = {props.setLoadingStatusAC}
+        setLoadingStatusAC={props.setLoadingStatusAC}
         movies={props.movies}
         currentPage={props.currentPage}
-        setCurrentPageAC = {props.setCurrentPageAC}
+        setCurrentPageAC={props.setCurrentPageAC}
         totalPages={props.totalPages}
         allFoundMovies={props.allFoundMovies}
-        genres = {props.genres}
-        setSelectedGenreAC = {props.setSelectedGenreAC}
-        selectedGenre = {props.selectedGenre}
-        getMoviesThunk = {props.getMoviesThunk}
-        search = {props.search}
-        searchBy = {props.searchBy}
-        selectedSearchType = {props.selectedSearchType}
-        setSelectedSearchTypeAC = {props.setSelectedSearchTypeAC}
-        getTrailersThunk = {props.getTrailersThunk}
-        trailers = {props.trailers}
-        setTrailersAC = {props.setTrailersAC}
+        genres={props.genres}
+        setSelectedGenreAC={props.setSelectedGenreAC}
+        selectedGenre={props.selectedGenre}
+        getMoviesThunk={props.getMoviesThunk}
+        search={props.search}
+        searchBy={props.searchBy}
+        selectedSearchType={props.selectedSearchType}
+        setSelectedSearchTypeAC={props.setSelectedSearchTypeAC}
+        getTrailersThunk={props.getTrailersThunk}
+        trailers={props.trailers}
+        setTrailersAC={props.setTrailersAC}
       />
     </>
   )
@@ -57,7 +80,7 @@ const mapStateToProps = (state) => {
     searchBy: state.moviesReducer.searchBy,
     selectedSearchType: state.moviesReducer.selectedSearchType,
     trailers: state.moviesReducer.trailers,
-    loading: state.moviesReducer.loading
+    loading: state.moviesReducer.loading,
   }
 }
 
@@ -69,24 +92,27 @@ const mapDispatchToProps = (dispatch) => {
     getGenresThunk() {
       dispatch(getGenresThunk())
     },
-    setSelectedGenreAC(selectedGenre){
+    setSelectedGenreAC(selectedGenre) {
       dispatch(setSelectedGenreAC(selectedGenre))
     },
-    setSelectedSearchTypeAC(selectedSearchType){
+    setSelectedSearchTypeAC(selectedSearchType) {
       dispatch(setSelectedSearchTypeAC(selectedSearchType))
     },
-    setCurrentPageAC(currentPage){
+    setCurrentPageAC(currentPage) {
       dispatch(setCurrentPageAC(currentPage))
     },
-    getTrailersThunk(id){
+    getTrailersThunk(id) {
       dispatch(getTrailersThunk(id))
     },
-    setTrailersAC(trailers){
+    setTrailersAC(trailers) {
       dispatch(setTrailersAC(trailers))
     },
-    setLoadingStatusAC(status){
+    setLoadingStatusAC(status) {
       dispatch(setLoadingStatusAC(status))
-    }
+    },
+    setSearchAC(search) {
+      dispatch(setSearchAC(search))
+    },
   }
 }
 

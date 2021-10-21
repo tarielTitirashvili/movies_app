@@ -8,8 +8,10 @@ export default function Pagination(props) {
     props.getMoviesThunk(props.search,props.selectedGenre,props.selectedSearchType,page)
     window.scroll(0, 0)
   }
-
-
+  function generateUrl(page) {
+    return `?page=${page}${props.search?'&search='+props.search:''}${props.selectedGenre?'&genre='+props.selectedGenre:''}${props.selectedSearchType?'&type='+props.selectedSearchType:''}`
+  }
+  
   return (
     <div>
       <div className="pagination">
@@ -23,7 +25,7 @@ export default function Pagination(props) {
           <NavLink
             onClick={() => onClick(props.currentPage - 1)}
             className={css.page}
-            to={`?page=${props.currentPage - 1}`}
+            to={generateUrl(props.currentPage-1)}
           >
             &laquo;
           </NavLink>
@@ -32,7 +34,7 @@ export default function Pagination(props) {
           <NavLink
             onClick={() =>onClick(props.currentPage - 2)}
             className={css.page}
-            to={`?page=${props.currentPage - 2}`}
+            to={generateUrl(props.currentPage - 2)}
           >
             {props.currentPage - 2}
           </NavLink>
@@ -41,7 +43,7 @@ export default function Pagination(props) {
           <NavLink
             onClick={() =>onClick(props.currentPage - 1)}
             className={css.page}
-            to={`?page=${props.currentPage - 1}`}
+            to={generateUrl(props.currentPage - 1)}
           >
             {props.currentPage - 1}
           </NavLink>
@@ -53,7 +55,7 @@ export default function Pagination(props) {
           <NavLink
             onClick={() =>onClick(props.currentPage + 1)}
             className={css.page}
-            to={`?page=${props.currentPage + 1}`}
+            to={generateUrl(props.currentPage + 1)}
           >
             {props.currentPage + 1}
           </NavLink>
@@ -62,7 +64,7 @@ export default function Pagination(props) {
           <NavLink
             onClick={() =>onClick(props.currentPage + 2)}
             className={css.page}
-            to={`?page=${props.currentPage + 2}`}
+            to={generateUrl(props.currentPage + 2)}
           >
             {props.currentPage + 2}
           </NavLink>
@@ -71,7 +73,7 @@ export default function Pagination(props) {
           <NavLink
             onClick={() =>onClick(props.currentPage + 1)}
             className={css.page}
-            to={`?page=${props.currentPage + 1}`}
+            to={generateUrl(props.currentPage + 1)}
           >
             &raquo;
           </NavLink>
@@ -80,7 +82,7 @@ export default function Pagination(props) {
           <NavLink 
             onClick={() =>onClick(props.totalPages)} 
             className={css.page} 
-            to={`?page=${props.totalPages}`}
+            to={generateUrl(props.totalPages)}
           >
             {props.totalPages}
           </NavLink>

@@ -41,7 +41,6 @@ export default function Movie(props) {
           />
         <img
           id = { props.movie.id }
-          onClick = {(e)=>console.log(e.target.id)}
           className={css.poster}
           src={
             props.movie.poster_path
@@ -55,7 +54,9 @@ export default function Movie(props) {
           style={{ display: `${focused ? 'block' : 'none'}` }}
         >
           <h4>overview</h4>
+          <div className = {css.overview_text}>
           {props.movie.overview}
+          </div>
           <p>Release date: {props.movie.release_date}</p>
           <div>
             <button onClick = {onClick} className = {css.view_more}> view more </button>

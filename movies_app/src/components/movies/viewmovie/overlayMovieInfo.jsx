@@ -19,7 +19,6 @@ export default function OverlayMovieInfo(props) {
     <div className = {css.overlay} style = {{width:props.overlay?'100%':'0vh'}}>
       <div onClick = {()=>onClick()} className={css.closebtn}>&times;</div>
         <div className={css.overlay_content}>
-          {/* <iframe className = {css.trailer} src={`https://www.youtube.com/embed/${validateTrailers(props.trailers)?props.trailers[page].key:''}`} title={validateTrailers(props.trailers)?props.trailers[page].name:''} frameBorder="0" allow="autoplay; encrypted-media;" allowFullScreen></iframe> */}
           { page? <div onClick = {()=>setPage(page--)} className = {css.arrow_left}>&lArr;</div>:''}
           {validateTrailers(props.trailers)? <ReactYoutube id = {props.trailers[page].key}/>:<h1>not found</h1>}
           { (page+1) <props.trailers.length? <div onClick = {()=>setPage(page++)} className = {css.arrow_right}>&rArr;</div>:''}

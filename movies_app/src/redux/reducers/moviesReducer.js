@@ -2,7 +2,6 @@ import { SORT_BY_ALL_ARRAY } from '../../constants'
 import {
   GET_GENRES,
   MOVIES_DATA,
-  SET_ALL_FOUND_MOVIES,
   SET_SEARCH_WORD,
   SET_SELECTED_GENRE,
   SET_SELECTED_SEARCH_TYPE,
@@ -32,11 +31,15 @@ export default function moviesReducer(state = initState, action) {
         ...state,
         movies: action.moviesData,
         totalPages: action.totalPages,
+        loading: false,
+        currentPage: action.page,
+        allFoundMovies: action.allMovies
       }
     case GET_GENRES:
       return {
         ...state,
         genres: action.genres,
+        loading: false
       }
     case SET_SELECTED_GENRE:
       return{
@@ -52,11 +55,6 @@ export default function moviesReducer(state = initState, action) {
       return{
         ...state,
         selectedSearchType: action.selectedSearchType
-      }
-    case SET_ALL_FOUND_MOVIES:
-      return{
-        ...state,
-        allFoundMovies: action.allMovies
       }
     case SET_CURRENT_PAGE:
       return{

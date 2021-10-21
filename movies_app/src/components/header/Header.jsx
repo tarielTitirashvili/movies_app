@@ -1,7 +1,13 @@
 import React from 'react'
 import css from './header.module.css'
+import {useHistory} from 'react-router-dom'
 
 export default function Header(props) {
+  function generateUrl() {
+    return `?page=${1}${props.search?'&search='+props.search:''}${props.selectedGenre?'&genre='+props.selectedGenre:''}${props.selectedSearchType?'&type='+props.selectedSearchType:''}`
+  }
+  const history = useHistory()
+
   function onSubmit(e) {
     e.preventDefault()
     props.getMoviesThunk(
@@ -10,6 +16,7 @@ export default function Header(props) {
       props.selectedSearchType
     )
     props.setLoadingStatusAC(true)
+    history.push(generateUrl())
   }
   return (
     <header className={css.header_container}>

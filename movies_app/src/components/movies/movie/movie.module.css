@@ -42,3 +42,12 @@
   margin: 0 0 10px 10px;
   padding: 7px;
 }
+.overview_text{
+  position: relative;
+  display: inline-block;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 17.8em; /* (Number of lines you want visible) * (line-height) */
+  line-height: 1.2em;
+  text-align:justify;
+}

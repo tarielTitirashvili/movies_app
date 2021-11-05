@@ -27,6 +27,10 @@ export default function Movies(props) {
         {props.movies.map((movie) => {
           return (
             <Movie
+              setLoadingStatusAC = {props.setLoadingStatusAC}
+              search={props.search}
+              genres={props.genres}
+              selectedSearchType={props.selectedSearchType}
               key={movie.id}
               movie={movie}
               getTrailersThunk={props.getTrailersThunk}

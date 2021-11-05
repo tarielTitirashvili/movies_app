@@ -24,10 +24,11 @@
 .overview {
   position: absolute;
   left: 15px;
-  bottom: 103.55px;
+  bottom: 88.55px;
   width: 300px;
   background-color: rgba(0, 0, 0, 0.712);
   color: white;
+  cursor: pointer;
 }
 .rating{
   display: flex;

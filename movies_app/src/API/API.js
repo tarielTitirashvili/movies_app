@@ -19,8 +19,41 @@ export const getGenresAPI = async () => {
   return await instance.get('/genre/movie/list?' + API_MAIN_KEY)
 }
 
-export const getTrailers = async (id) => {
+export const getTrailersAPI = async (id) => {
   return await instance.get(
     `/movie/${id}/videos?${API_MAIN_KEY}`
+  )
+}
+
+export const getReviews = async (id, page) =>{
+  return await instance.get(
+    `/movie/${id}/reviews?${API_MAIN_KEY}${page?`&page=${page}`:''}`
+  )
+}
+export const getSimilarAPI = async (id, page) =>{
+  return await instance.get(
+    `/movie/${id}/similar?${API_MAIN_KEY}&page=${page}`
+  )
+}
+export const getDetailsAPI = async (id) =>{
+  return await instance.get(
+    `/movie/${id}?${API_MAIN_KEY}`
+  )
+}
+export const setRateAPI = async (id) =>{
+  return await instance.post(
+    `/movie/${id}/rating?${API_MAIN_KEY}`,{
+      "value": 8.5
+    }
+  )
+}
+export const getAccountAPI = async (id) =>{
+  return await instance.get(
+    `/account?${API_MAIN_KEY}`
+  )
+}
+export const getBackDropsAPI = async (id) => {
+  return await instance.get(
+    `/movie/${id}/images?${API_MAIN_KEY}`
   )
 }

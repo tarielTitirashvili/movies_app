@@ -1,0 +1,36 @@
+.poster{
+  padding: 3vh 0 3vh 2vw;
+  width: 300px;
+  height: 450px;
+}
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+}
+.backgroundPoster{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.backgroundTransition{
+  background-color: rgba(0, 0, 0, 0.719);
+}
+.main_title{
+  padding: 2vh 0 0 2vw;
+  color: gold;
+}
+.details_container{
+  padding-top: 3vh;
+  width: 70%;
+  margin-left: 1%;
+}
+.view_more{
+  background-color: gold;
+  border-radius: 15px;
+  margin: 0 0 10px 10px;
+  padding: 7px;
+}
+.homepage{
+  text-decoration: none;
+  color: blue;
+}

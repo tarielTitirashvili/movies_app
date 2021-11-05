@@ -7,12 +7,10 @@ import {
   setSelectedGenreAC,
   setSelectedSearchTypeAC,
   setCurrentPageAC,
-  setTrailersAC,
   setLoadingStatusAC,
   setSearchAC,
 } from '../../redux/action/moviesActions'
 import { connect } from 'react-redux'
-import { getTrailersThunk } from './../../redux/action/moviesActions'
 import Loading from '../loading/loading'
 import { useLocation } from 'react-router'
 
@@ -21,30 +19,34 @@ export function MoviesContainer(props) {
 
   let makeNormal = location.search.slice(1)
   let { page, genre, search, type } = qs.parse(makeNormal)
+  useEffect(()=>{
+    props.getGenresThunk()
+  },[])
 
   useEffect(() => {
-    if (page) {
-      props.setCurrentPageAC(page)
-      props.setSelectedGenreAC(genre)
-      props.setSearchAC(search)
-      props.setSelectedSearchTypeAC(type)
-      props.getMoviesThunk(search, genre, type, page)
-    } else {
-      props.getMoviesThunk(
-        props.search,
-        props.selectedGenre,
-        props.selectedSearchType,
-        props.currentPage
-      )
-    }
-    props.getGenresThunk()
-  }, [])
+    props.getMoviesThunk(
+      props.search,
+      props.selectedGenre,
+      props.selectedSearchType,
+      props.currentPage
+    )
+  }, [
+    props.search,
+    props.selectedGenre,
+    props.selectedSearchType,
+    props.currentPage
+  ])
 
-  console.log('render')
+  useEffect(()=>{
+        if(page && page != props.currentPage)props.setCurrentPageAC(page)
+        if(genre) props.setSelectedGenreAC(genre)
+        if(search)props.setSearchAC(search)
+        if(type) props.setSelectedSearchTypeAC(type)
+  },[page])
 
   if (props.loading) return <Loading />
 
-  return (
+  return(
     <>
       <Movies
         setLoadingStatusAC={props.setLoadingStatusAC}
@@ -100,13 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     setCurrentPageAC(currentPage) {
       dispatch(setCurrentPageAC(currentPage))
-    },
-    getTrailersThunk(id) {
-      dispatch(getTrailersThunk(id))
-    },
-    setTrailersAC(trailers) {
-      dispatch(setTrailersAC(trailers))
-    },
+    },   
     setLoadingStatusAC(status) {
       dispatch(setLoadingStatusAC(status))
     },

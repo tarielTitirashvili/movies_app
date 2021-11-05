@@ -6,7 +6,6 @@ import {
   SET_SELECTED_GENRE,
   SET_SELECTED_SEARCH_TYPE,
   SET_CURRENT_PAGE,
-  SET_TRAILERS_DATA,
   SET_LOADING_STATUS, 
 } from '../constants'
 
@@ -20,7 +19,6 @@ const initState = {
   search:'',
   searchBy: [...SORT_BY_ALL_ARRAY],
   selectedSearchType: undefined,
-  trailers:[],
   loading: true,
 }
 
@@ -32,7 +30,6 @@ export default function moviesReducer(state = initState, action) {
         movies: action.moviesData,
         totalPages: action.totalPages,
         loading: false,
-        currentPage: action.page,
         allFoundMovies: action.allMovies
       }
     case GET_GENRES:
@@ -60,11 +57,6 @@ export default function moviesReducer(state = initState, action) {
       return{
         ...state,
         currentPage: action.currentPage
-      }
-    case SET_TRAILERS_DATA:
-      return{
-        ...state,
-        trailers: action.trailers
       }
     case SET_LOADING_STATUS:
       return{

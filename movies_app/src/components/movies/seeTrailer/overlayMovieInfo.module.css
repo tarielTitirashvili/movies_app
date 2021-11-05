@@ -63,14 +63,14 @@
   position: absolute;
 }
 .arrow_left{
-  font-size: 35px;
+  font-size: 65px;
   position: absolute;
   left: 5%;
   top: 50%;
   cursor: pointer;
 }
 .arrow_right{
-  font-size: 35px;
+  font-size: 65px;
   position: absolute;
   right: 5%;
   top: 50%;

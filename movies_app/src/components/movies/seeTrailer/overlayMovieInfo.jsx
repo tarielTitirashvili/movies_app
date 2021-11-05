@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import css from './overlayMovieInfo.module.css'
 import ReactYoutube from '../../reactYoutube/reactYoutube'
+import { useParams } from 'react-router'
+
 
 export default function OverlayMovieInfo(props) {
+  
   let [page, setPage] = useState(0)
+  const {id} = useParams()
   function onClick() {
     props.setOverlay(false)
     props.setTrailersAC([])
   }
+  useEffect(()=>{
+    props.getTrailersThunk(id)
+  },[props.overlay])
+
   function validateTrailers(trailers) {
     if(trailers.length===0){
       return false

@@ -1,0 +1,15 @@
+.container{
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 10px;
+}
+.imageSize{
+  width: 100%;
+}
+a{
+  text-decoration: none;
+  color: white;
+}

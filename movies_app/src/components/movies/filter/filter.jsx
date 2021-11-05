@@ -12,7 +12,9 @@ export default function Filter(props) {
     event.preventDefault()
     props.setLoadingStatusAC(true)
     props.getMoviesThunk(props.search, props.selectedGenre, props.selectedSearchType)
-    history.push(generateUrl())
+    history.push({
+      search: generateUrl(),
+    })
   }
   function onGenreSelect (e){
     if(e.target.value === props.selectedGenre || e.target.value =='genre'){

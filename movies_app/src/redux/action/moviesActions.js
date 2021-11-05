@@ -1,4 +1,4 @@
-import { getGenresAPI, getMoviesByPopularity, getTrailers } from "../../API/API"
+import { getGenresAPI, getMoviesByPopularity, } from "../../API/API"
 import { 
     GET_GENRES, 
     MOVIES_DATA, 
@@ -6,7 +6,6 @@ import {
     SET_SELECTED_GENRE, 
     SET_SELECTED_SEARCH_TYPE, 
     SET_CURRENT_PAGE, 
-    SET_TRAILERS_DATA,
     SET_LOADING_STATUS
 } from "../constants"
 
@@ -17,7 +16,7 @@ export const getMoviesThunk = (search, selectedGenre, selectedSearchType, curren
             dispatch(setMoviesDataAC(
                 data.data.results,
                 data.data.total_pages,
-                data.data.page,
+                Number(data.data.page),
                 data.data.total_results
             ))
         })
@@ -31,13 +30,7 @@ export const getGenresThunk = () =>{
     }
 }
 
-export const getTrailersThunk = (id) => {
-    return (dispatch) =>{
-        getTrailers(id).then((data)=>{
-            dispatch(setTrailersAC(data.data.results))
-        })
-    }
-}
+
 
 const setMoviesDataAC = (moviesData, totalPages, page, allMovies) =>({type: MOVIES_DATA, moviesData, totalPages, page, allMovies})
 
@@ -45,12 +38,10 @@ const setGenresAC = (genres) =>({type: GET_GENRES, genres})
 
 export const setLoadingStatusAC = (status)=>({type:SET_LOADING_STATUS, status})
 
-export const setTrailersAC = (trailers) =>({type: SET_TRAILERS_DATA, trailers})
-
 export const setSelectedGenreAC = (selectedGenre) =>({type:SET_SELECTED_GENRE, selectedGenre})
 
 export const setSearchAC = (search) =>({type:SET_SEARCH_WORD, search})
 
 export const setSelectedSearchTypeAC = (selectedSearchType) =>({type:SET_SELECTED_SEARCH_TYPE, selectedSearchType})
 
-export const setCurrentPageAC = (currentPage) =>({type: SET_CURRENT_PAGE, currentPage})
+export const setCurrentPageAC = (currentPage) =>({type: SET_CURRENT_PAGE, currentPage:Number(currentPage)})

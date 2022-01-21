@@ -32,7 +32,7 @@ export default function Filter(props) {
   }
 
   return (
-    <form className = {css.form_container} onSubmit = {(e)=>submit(e)}>
+    <form className = {css.form_container} onChange={(e)=>submit(e)}>
        <select value = {props.selectedSearchType} className = {css.selector} onChange = {(e)=>onSortTypeSelect(e)}>
           <option defaultValue value = 'selected by' > selected by </option>
           {props.searchBy.map((searchType) => {
@@ -53,9 +53,6 @@ export default function Filter(props) {
             )
           })}
         </select>
-        <button className = {css.submit_button} >
-          submit
-        </button>
     </form>
   )
 }

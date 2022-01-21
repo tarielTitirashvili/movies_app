@@ -1,14 +1,18 @@
 import React from 'react'
 import css from './header.module.css'
-import {useHistory} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
 
 export default function Header(props) {
   function generateUrl() {
     return `?page=${1}${props.search?'&search='+props.search:''}${props.selectedGenre?'&genre='+props.selectedGenre:''}${props.selectedSearchType?'&type='+props.selectedSearchType:''}`
   }
-  
   const history = useHistory()
 
+  function resetSelectors() {
+    props.setSelectedGenreAC(undefined)
+    props.setSelectedSearchTypeAC(undefined)
+    props.setSearchAC('')
+  }
   function onSubmit(e) {
     e.preventDefault()
     props.getMoviesThunk(
@@ -23,11 +27,13 @@ export default function Header(props) {
   }
   return (
     <header className={css.header_container}>
-      <img
-        className={css.logo}
-        src="https://i.pinimg.com/originals/c1/ae/86/c1ae864b0ea941be0362c6d45fad10af.jpg"
-        alt="logo"
-      />
+      <NavLink onClick={resetSelectors} to = '/home'>
+        <img
+          className={css.logo}
+          src="https://i.pinimg.com/originals/c1/ae/86/c1ae864b0ea941be0362c6d45fad10af.jpg"
+          alt="logo"
+        />
+      </NavLink>
       <form className={css.form_container} onSubmit={onSubmit}>
         <input
           className={css.search_input}

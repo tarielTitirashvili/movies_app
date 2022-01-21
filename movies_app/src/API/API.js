@@ -57,3 +57,12 @@ export const getBackDropsAPI = async (id) => {
     `/movie/${id}/images?${API_MAIN_KEY}`
   )
 }
+export const setCreateListAPI = async (id) =>{
+  return await instance.post(
+    `/list?${API_MAIN_KEY}`,{
+      "name": "This is my awesome test list.",
+      "description": "Just an awesome list dawg.",
+      "language": "en"
+    }
+  )
+}

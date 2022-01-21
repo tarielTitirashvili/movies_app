@@ -6,7 +6,7 @@ import {
   SET_SELECTED_GENRE,
   SET_SELECTED_SEARCH_TYPE,
   SET_CURRENT_PAGE,
-  SET_LOADING_STATUS, 
+  SET_LOADING_STATUS,
 } from '../constants'
 
 const initState = {

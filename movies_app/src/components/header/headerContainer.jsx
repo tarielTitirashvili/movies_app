@@ -1,6 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getMoviesThunk, setLoadingStatusAC, setSearchAC } from '../../redux/action/moviesActions'
+import { 
+    getMoviesThunk,
+    setLoadingStatusAC, 
+    setSearchAC, 
+    setSelectedSearchTypeAC, 
+    setSelectedGenreAC 
+} from '../../redux/action/moviesActions'
 import Header from './Header'
 
 export function HeaderContainer(props) {
@@ -14,6 +20,8 @@ export function HeaderContainer(props) {
                 setSearchAC = {props.setSearchAC}
                 selectedGenre = {props.selectedGenre}
                 selectedSearchType = {props.selectedSearchType}
+                setSelectedSearchTypeAC = {props.setSelectedSearchTypeAC}
+                setSelectedGenreAC = {props.setSelectedGenreAC}
             />   
         </>
     )
@@ -37,6 +45,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         setLoadingStatusAC(status){
             dispatch(setLoadingStatusAC(status))
+        },
+        setSelectedSearchTypeAC(selectedSearchType){
+            dispatch(setSelectedSearchTypeAC(selectedSearchType))
+        },
+        setSelectedGenreAC(selectedGenre){
+            dispatch(setSelectedGenreAC(selectedGenre))
         }
     }
 }

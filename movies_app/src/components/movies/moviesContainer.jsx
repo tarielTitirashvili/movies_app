@@ -13,6 +13,7 @@ import {
 import { connect } from 'react-redux'
 import Loading from '../loading/loading'
 import { useLocation } from 'react-router'
+import { setCreateListAPI } from '../../API/API'
 
 export function MoviesContainer(props) {
   const location = useLocation()
@@ -22,6 +23,7 @@ export function MoviesContainer(props) {
   useEffect(()=>{
     props.getGenresThunk()
   },[])
+  setCreateListAPI()
 
   useEffect(() => {
     props.getMoviesThunk(

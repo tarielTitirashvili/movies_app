@@ -9,7 +9,6 @@ import {
 export const getBackDropsThunk = (id) =>{
   return(dispatch)=>{
       getBackDropsAPI(id).then((data)=>{
-          console.log(data)
           dispatch(setImagesAC(data.data.backdrops, data.data.posters, data.data.logos ))
       })
   }

@@ -31,7 +31,6 @@ export const getGenresThunk = () =>{
 }
 
 
-
 const setMoviesDataAC = (moviesData, totalPages, page, allMovies) =>({type: MOVIES_DATA, moviesData, totalPages, page, allMovies})
 
 const setGenresAC = (genres) =>({type: GET_GENRES, genres})

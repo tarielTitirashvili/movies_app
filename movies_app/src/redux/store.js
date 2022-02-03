@@ -4,7 +4,6 @@ import moviesReducer from "./reducers/moviesReducer"
 import moviePageReducer from "./reducers/moviePageReducer"
 import showPicturesReducer from './reducers/showPicturesReducer'
 
-
 let reducers = combineReducers(
     {
        moviesReducer: moviesReducer,

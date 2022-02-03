@@ -8,8 +8,6 @@ import {
   setReviewPagesAC, 
   getSimilarThunk, 
   getDetailsThunk, 
-  setRateThunk, 
-  getAccountThunk,
   getBackDropsThunk,
   getTrailersThunk,
   setTrailersAC,
@@ -22,9 +20,7 @@ export function MoviePageContainer(props){
     props.getReviewsThunk(id, props.reviewPage)
     props.getSimilarThunk(id, props.similarPage)
     props.getDetailsThunk(id)
-    props.setRateThunk(id)
     props.getBackDropsThunk(id)
-    props.getAccountThunk()
   },[id, props.reviewPage])
 
   if (props.loading) return <Loading />
@@ -106,12 +102,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     getDetailsThunk(id){
       dispatch(getDetailsThunk(id))
-    },
-    setRateThunk(id, rating){
-      dispatch(setRateThunk(id, rating))
-    },
-    getAccountThunk(){
-      dispatch(getAccountThunk())
     },
     getBackDropsThunk(id){
       dispatch(getBackDropsThunk(id))

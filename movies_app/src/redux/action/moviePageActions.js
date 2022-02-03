@@ -1,9 +1,7 @@
 import { 
-    getAccountAPI, 
     getDetailsAPI, 
     getReviews, 
     getSimilarAPI, 
-    setRateAPI,
     getBackDropsAPI,
     getTrailersAPI
 } from "../../API/API"
@@ -30,20 +28,6 @@ export const getSimilarThunk = (id, page) => {
     return (dispatch) =>{
         getSimilarAPI(id, page).then((data)=>{
             dispatch(setSimilarMoviesAC(data.data.results))
-        })
-    }
-}
-export const setRateThunk = (id, rate) => {
-    return (dispatch) =>{
-        setRateAPI(id, rate).then((data)=>{
-            console.log(data)
-        })
-    }
-}
-export const getAccountThunk = ()=>{
-    return(dispatch)=>{
-        getAccountAPI().then((data)=>{
-            console.log(data)
         })
     }
 }

@@ -40,18 +40,6 @@ export const getDetailsAPI = async (id) =>{
     `/movie/${id}?${API_MAIN_KEY}`
   )
 }
-export const setRateAPI = async (id) =>{
-  return await instance.post(
-    `/movie/${id}/rating?${API_MAIN_KEY}`,{
-      "value": 8.5
-    }
-  )
-}
-export const getAccountAPI = async (id) =>{
-  return await instance.get(
-    `/account?${API_MAIN_KEY}`
-  )
-}
 export const getBackDropsAPI = async (id) => {
   return await instance.get(
     `/movie/${id}/images?${API_MAIN_KEY}`

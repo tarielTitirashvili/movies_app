@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import css from './header.module.css'
 import {NavLink, useHistory} from 'react-router-dom'
 
@@ -7,6 +7,11 @@ export default function Header(props) {
     return `?page=${1}${props.search?'&search='+props.search:''}${props.selectedGenre?'&genre='+props.selectedGenre:''}${props.selectedSearchType?'&type='+props.selectedSearchType:''}`
   }
   const history = useHistory()
+  useEffect(()=>{
+    history.push({
+      search: generateUrl()
+    })
+  },[props.search])
 
   function resetSelectors() {
     props.setSelectedGenreAC(undefined)
@@ -21,9 +26,7 @@ export default function Header(props) {
       props.selectedSearchType
     )
     props.setLoadingStatusAC(true)
-    history.push({
-      search: generateUrl()
-    })
+
   }
   return (
     <header className={css.header_container}>
@@ -44,4 +47,5 @@ export default function Header(props) {
       </form>
     </header>
   )
+  
 }

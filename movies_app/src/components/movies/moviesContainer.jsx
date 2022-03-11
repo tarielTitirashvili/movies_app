@@ -14,16 +14,26 @@ import { connect } from 'react-redux'
 import Loading from '../loading/loading'
 import { useLocation } from 'react-router'
 import { setCreateListAPI } from '../../API/API'
+import { useHistory } from 'react-router-dom'
 
 export function MoviesContainer(props) {
   const location = useLocation()
-
+  const history = useHistory()
   let makeNormal = location.search.slice(1)
   let { page, genre, search, type } = qs.parse(makeNormal)
   useEffect(()=>{
     props.getGenresThunk()
   },[])
   setCreateListAPI()
+  function generateUrl() {
+    return `?page=${1}${props.search?'&search='+props.search:''}${props.selectedGenre?'&genre='+props.selectedGenre:''}${props.selectedSearchType?'&type='+props.selectedSearchType:''}`
+  }
+  useEffect(()=>{
+    props.getMoviesThunk(props.search, props.selectedGenre, props.selectedSearchType)
+    history.push({
+      search: generateUrl(),
+    })
+  }, [props.selectedGenre, props.selectedSearchType])
 
   useEffect(() => {
     props.getMoviesThunk(

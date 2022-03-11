@@ -20,6 +20,7 @@
 .poster {
   width: 300px;
   cursor: pointer;
+  height: 450px;
 }
 .overview {
   position: absolute;

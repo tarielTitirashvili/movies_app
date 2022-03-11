@@ -1,20 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import css from './filter.module.css'
-import { useHistory } from 'react-router-dom';
 
 export default function Filter(props) {
-  function generateUrl() {
-    return `?page=${1}${props.search?'&search='+props.search:''}${props.selectedGenre?'&genre='+props.selectedGenre:''}${props.selectedSearchType?'&type='+props.selectedSearchType:''}`
-  }
-  const history = useHistory()
-  
   function submit(event) {
     event.preventDefault()
     props.setLoadingStatusAC(true)
-    props.getMoviesThunk(props.search, props.selectedGenre, props.selectedSearchType)
-    history.push({
-      search: generateUrl(),
-    })
   }
   function onGenreSelect (e){
     if(e.target.value === props.selectedGenre || e.target.value =='genre'){
